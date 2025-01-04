@@ -5,20 +5,20 @@ type Heap struct {
 	Comparator func(a int, b int) bool
 }
 
-func (h *Heap) swap(a int, b int) {
-	h.Data[a], h.Data[b] = h.Data[b], h.Data[a]
-}
-
-func (h *Heap) size() int {
+func (h *Heap) Size() int {
 	return len(h.Data)
 }
 
-func (h *Heap) peek() int {
+func (h *Heap) Peek() int {
 	return h.Data[0]
 }
 
-func (h *Heap) empty() bool {
-	return h.size() == 0
+func (h *Heap) Empty() bool {
+	return h.Size() == 0
+}
+
+func (h *Heap) swap(a int, b int) {
+	h.Data[a], h.Data[b] = h.Data[b], h.Data[a]
 }
 
 func (h *Heap) bubbleUp(index int) {
@@ -34,9 +34,8 @@ func (h *Heap) bubbleUp(index int) {
 func (h *Heap) sinkDown(index int) {
 	childLeftIdx := index*2 + 1
 
-	for childLeftIdx < h.size() {
+	for childLeftIdx < h.Size() {
 		childRightIdx := childLeftIdx + 1
-
 		swapIdx := childLeftIdx
 
 		if childRightIdx < len(h.Data) && h.Comparator(h.Data[childRightIdx], h.Data[childLeftIdx]) {
@@ -59,12 +58,12 @@ func (h *Heap) Insert(value int) {
 }
 
 func (h *Heap) ExtractTop() int {
-	top := h.peek()
-	last := h.Data[h.size()-1]
+	top := h.Peek()
+	last := h.Data[h.Size()-1]
 
-	if !h.empty() {
+	if !h.Empty() {
 		h.Data[0] = last
-		h.Data = h.Data[:h.size()-1]
+		h.Data = h.Data[:h.Size()-1]
 		h.sinkDown(0)
 	}
 
