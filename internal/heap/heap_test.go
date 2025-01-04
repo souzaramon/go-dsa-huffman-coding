@@ -6,7 +6,7 @@ import (
 )
 
 func TestHeap_InsertMinHeap(t *testing.T) {
-	h := &Heap{Comparator: MinHeapComparator}
+	h := &Heap[int]{Comparator: MinHeapComparator}
 	h.Insert(3)
 	h.Insert(1)
 	h.Insert(4)
@@ -19,7 +19,7 @@ func TestHeap_InsertMinHeap(t *testing.T) {
 }
 
 func TestHeap_InsertMaxHeap(t *testing.T) {
-	h := &Heap{Comparator: MaxHeapComparator}
+	h := &Heap[int]{Comparator: MaxHeapComparator}
 	h.Insert(3)
 	h.Insert(1)
 	h.Insert(4)
@@ -32,13 +32,13 @@ func TestHeap_InsertMaxHeap(t *testing.T) {
 }
 
 func TestHeap_ExtractTopMinHeap(t *testing.T) {
-	h := &Heap{Comparator: MinHeapComparator}
+	h := &Heap[int]{Comparator: MinHeapComparator}
 	h.Insert(3)
 	h.Insert(1)
 	h.Insert(4)
 	h.Insert(2)
 
-	top := h.ExtractTop()
+	top := h.Pop()
 
 	if top != 1 {
 		t.Errorf("Expected 1 when extracting top from MinHeap, but got %d", top)
@@ -51,13 +51,13 @@ func TestHeap_ExtractTopMinHeap(t *testing.T) {
 }
 
 func TestHeap_ExtractTopMaxHeap(t *testing.T) {
-	h := &Heap{Comparator: MaxHeapComparator}
+	h := &Heap[int]{Comparator: MaxHeapComparator}
 	h.Insert(3)
 	h.Insert(1)
 	h.Insert(4)
 	h.Insert(2)
 
-	top := h.ExtractTop()
+	top := h.Pop()
 
 	if top != 4 {
 		t.Errorf("Expected 4 when extracting top from MaxHeap, but got %d", top)
@@ -70,7 +70,7 @@ func TestHeap_ExtractTopMaxHeap(t *testing.T) {
 }
 
 func TestHeap_EmptyHeap(t *testing.T) {
-	h := &Heap{Comparator: MinHeapComparator}
+	h := &Heap[int]{Comparator: MinHeapComparator}
 
 	if !h.Empty() {
 		t.Error("Expected heap to be empty initially")
@@ -83,7 +83,7 @@ func TestHeap_EmptyHeap(t *testing.T) {
 }
 
 func TestHeap_PeekMinHeap(t *testing.T) {
-	h := &Heap{Comparator: MinHeapComparator}
+	h := &Heap[int]{Comparator: MinHeapComparator}
 	h.Insert(3)
 	h.Insert(1)
 	h.Insert(4)
@@ -95,7 +95,7 @@ func TestHeap_PeekMinHeap(t *testing.T) {
 }
 
 func TestHeap_PeekMaxHeap(t *testing.T) {
-	h := &Heap{Comparator: MaxHeapComparator}
+	h := &Heap[int]{Comparator: MaxHeapComparator}
 	h.Insert(3)
 	h.Insert(1)
 	h.Insert(4)

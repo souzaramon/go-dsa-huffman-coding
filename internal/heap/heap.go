@@ -1,27 +1,27 @@
 package heap
 
-type Heap struct {
-	Data       []int
-	Comparator func(a int, b int) bool
+type Heap[T any] struct {
+	Data       []T
+	Comparator func(a T, b T) bool
 }
 
-func (h *Heap) Size() int {
+func (h *Heap[T]) Size() int {
 	return len(h.Data)
 }
 
-func (h *Heap) Peek() int {
+func (h *Heap[T]) Peek() T {
 	return h.Data[0]
 }
 
-func (h *Heap) Empty() bool {
+func (h *Heap[T]) Empty() bool {
 	return h.Size() == 0
 }
 
-func (h *Heap) swap(a int, b int) {
+func (h *Heap[T]) swap(a int, b int) {
 	h.Data[a], h.Data[b] = h.Data[b], h.Data[a]
 }
 
-func (h *Heap) bubbleUp(index int) {
+func (h *Heap[T]) bubbleUp(index int) {
 	parentIndex := (index - 1) >> 1
 
 	for index > 0 && h.Comparator(h.Data[index], h.Data[parentIndex]) {
@@ -31,7 +31,7 @@ func (h *Heap) bubbleUp(index int) {
 	}
 }
 
-func (h *Heap) sinkDown(index int) {
+func (h *Heap[T]) sinkDown(index int) {
 	childLeftIdx := index*2 + 1
 
 	for childLeftIdx < h.Size() {
@@ -52,12 +52,12 @@ func (h *Heap) sinkDown(index int) {
 	}
 }
 
-func (h *Heap) Insert(value int) {
+func (h *Heap[T]) Insert(value T) {
 	h.Data = append(h.Data, value)
 	h.bubbleUp(len(h.Data) - 1)
 }
 
-func (h *Heap) ExtractTop() int {
+func (h *Heap[T]) Pop() T {
 	top := h.Peek()
 	last := h.Data[h.Size()-1]
 
