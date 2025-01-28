@@ -2,8 +2,6 @@ package huffman_coding
 
 import (
 	"sort"
-
-	"github.com/souzaramon/go-dsa-huffman-coding/internal/heap"
 )
 
 type Node interface {
@@ -49,7 +47,7 @@ func CreateFreqMap(raw string) map[rune]int {
 }
 
 func CreateTree(freqMap map[rune]int) Node {
-	tree := heap.Heap[Node]{
+	tree := Heap[Node]{
 		Data:       make([]Node, 0),
 		Comparator: HuffmanComparator,
 	}
@@ -76,4 +74,8 @@ func CreateTree(freqMap map[rune]int) Node {
 	}
 
 	return tree.Pop()
+}
+
+func CreateCodes() {
+
 }

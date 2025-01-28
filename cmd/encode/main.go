@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/souzaramon/go-dsa-huffman-coding/internal/huffman_coding"
+	"github.com/souzaramon/huffman_coding"
 )
 
 func main() {

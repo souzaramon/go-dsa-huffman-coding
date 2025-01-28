@@ -1,4 +1,4 @@
-package heap
+package huffman_coding
 
 type Heap[T any] struct {
 	Data       []T

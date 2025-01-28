@@ -1,4 +1,4 @@
-package heap
+package huffman_coding
 
 import (
 	"reflect"
